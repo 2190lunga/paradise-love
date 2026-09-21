@@ -1,49 +1,388 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lungani ❤️ Samkelo</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap');
-:root{--pink:#e6395b;--dark:#281822;--muted:#746770;--soft:#fff3f5}*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:20px;color:var(--dark);font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#fff8f5,#ffe5ec);overflow-x:hidden}.page{width:min(760px,100%);margin:auto}.top{display:flex;justify-content:space-between;align-items:center;padding:8px 0 22px;color:var(--pink);font-weight:700}.music{border:1px solid #edd6dc;border-radius:99px;padding:9px 14px;background:#ffffffaa;color:var(--dark);cursor:pointer}.card{padding:clamp(24px,6vw,55px);border:1px solid #fff;background:#ffffffdc;border-radius:30px;box-shadow:0 20px 60px #7e304018;text-align:center}.eyebrow{color:#bd3c58;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}h1,h2{font-family:'Playfair Display',serif}h1{margin:13px 0 12px;font-size:clamp(38px,8vw,68px);line-height:1.02}h1 span{color:var(--pink);font-style:italic}.intro{margin:auto;max-width:530px;color:var(--muted);line-height:1.7}.date{display:inline-block;margin:18px 0;padding:11px 17px;border-radius:99px;background:var(--soft);color:#bd3c58;font-weight:700}.choices{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}.choice{position:relative;padding:21px;border:2px solid #eee2e5;border-radius:18px;background:#fff;color:var(--dark);text-align:left;cursor:pointer;transition:.2s}.choice:hover{transform:translateY(-3px);border-color:#ed9aaa}.choice.selected{border-color:var(--pink);background:var(--soft)}.choice:focus-visible{outline:3px solid #f3a1b2;outline-offset:2px}.choice .icon{font-size:25px}.choice h3{margin:10px 0 5px;font-size:17px}.choice p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}.check{display:none;position:absolute;right:15px;top:15px;color:var(--pink);font-size:20px}.selected .check{display:block}.actions{margin-top:25px}.primary,.secondary{border:0;border-radius:99px;padding:14px 22px;font-weight:700;font-size:15px;cursor:pointer}.primary{background:var(--pink);color:white;box-shadow:0 9px 18px #e6395b45}.primary:hover{background:#c92d4c}.secondary{margin-left:8px;background:#f1ecee;color:#665a61}.message{min-height:24px;margin-top:17px;color:#bd3c58;font-weight:600}.info{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px;text-align:left}.info div{padding:17px;border-radius:15px;background:#fff}.info small{display:block;margin-top:5px;color:var(--muted);line-height:1.4}.quote{margin:35px auto 4px;max-width:540px;font:italic 21px/1.4 'Playfair Display',serif}footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}.overlay{display:none;position:fixed;inset:0;z-index:5;place-items:center;padding:20px;background:#24151fb8}.overlay.show{display:grid}.modal{width:min(570px,100%);max-height:92vh;overflow:auto;padding:30px;border-radius:25px;background:#fff;text-align:center;animation:pop .3s ease}.modal h2{margin:12px 0;color:#bd3c58;font-size:36px}.place{margin-top:20px;font-size:22px;font-weight:700}.address,.status{color:var(--muted);font-size:13px}.photos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}.photos img{width:100%;height:190px;object-fit:cover;border-radius:14px}.note{color:var(--muted);line-height:1.6}.calendar{display:block;margin:14px 0;color:#bd3c58;font-weight:700}.close{background:var(--dark);box-shadow:none;margin-top:10px}@keyframes pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}@media(max-width:600px){.choices,.info{grid-template-columns:1fr}.card{padding:27px 18px}.top{font-size:14px}.secondary{margin:10px 0 0}.photos img{height:145px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#24151f">
+  <meta name="description" content="A romantic date invitation for Samkelo from Lungani.">
+  <title>A little something for Samkelo ✨</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+    :root {
+      --ink: #2d1d27;
+      --muted: #796a73;
+      --rose: #d95770;
+      --rose-dark: #b83e59;
+      --cream: #fffaf6;
+      --line: #eadfe0;
+      --shadow: 0 24px 80px rgba(78, 32, 52, .15);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      z-index: -1;
+      width: 36rem;
+      height: 36rem;
+      border-radius: 50%;
+      filter: blur(4px);
+      opacity: .5;
+    }
+    body::before { top: -16rem; left: -12rem; background: #f8cbd4; }
+    body::after { right: -18rem; bottom: -18rem; background: #f5dfb7; }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: min(1100px, calc(100% - 40px));
+      margin: auto;
+      padding: 24px 0;
+      font-size: .82rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .brand { font-weight: 700; color: var(--rose-dark); }
+    .music-toggle {
+      border: 1px solid var(--line); background: rgba(255,255,255,.7); color: var(--ink);
+      border-radius: 999px; padding: 9px 14px; cursor: pointer; font: inherit; text-transform: none;
+    }
+    .music-toggle:hover, .music-toggle:focus-visible { border-color: var(--rose); outline: none; }
+
+    main { width: min(1100px, calc(100% - 40px)); margin: auto; padding: 34px 0 80px; }
+    .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 70px; align-items: center; min-height: 500px; }
+    .eyebrow { color: var(--rose-dark); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .78rem; }
+    h1, h2 { font-family: 'Playfair Display', serif; font-weight: 600; line-height: 1.05; }
+    h1 { font-size: clamp(3.2rem, 8vw, 6.5rem); margin: 18px 0 24px; letter-spacing: -.05em; }
+    h1 span { color: var(--rose); font-style: italic; }
+    .hero-copy { max-width: 560px; color: var(--muted); font-size: 1.1rem; line-height: 1.8; }
+    .date-pill { display: inline-flex; gap: 10px; align-items: center; margin-top: 20px; padding: 12px 17px; border-radius: 999px; color: var(--rose-dark); background: #fff0f2; font-weight: 600; }
+    .portrait { position: relative; max-width: 430px; justify-self: center; }
+    .portrait img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 220px 220px 24px 24px; box-shadow: var(--shadow); }
+    .portrait-note { position: absolute; right: -25px; bottom: 22px; max-width: 190px; padding: 17px; background: white; border-radius: 16px; box-shadow: 0 12px 30px rgba(60,30,45,.14); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; transform: rotate(3deg); }
+
+    .section { margin-top: 100px; }
+    .section-heading { text-align: center; max-width: 600px; margin: 0 auto 32px; }
+    h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin: 12px 0; letter-spacing: -.03em; }
+    .section-heading p { color: var(--muted); line-height: 1.7; }
+    .choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .choice {
+      position: relative; text-align: left; border: 1px solid var(--line); border-radius: 20px; padding: 24px;
+      background: rgba(255,255,255,.78); color: inherit; cursor: pointer; transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+    .choice:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(78,32,52,.1); border-color: #e49aaa; }
+    .choice.selected { border: 2px solid var(--rose); background: #fff4f5; box-shadow: 0 12px 30px rgba(217,87,112,.16); }
+    .choice:focus-visible { outline: 3px solid #f1a1b1; outline-offset: 3px; }
+    .choice-icon { font-size: 1.6rem; }
+    .choice h3 { margin: 14px 0 7px; font-size: 1.15rem; }
+    .choice p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.55; }
+    .check { position: absolute; top: 20px; right: 20px; display: none; color: var(--rose-dark); font-size: 1.25rem; }
+    .selected .check { display: block; }
+    .actions { text-align: center; margin-top: 28px; }
+    button { font-family: inherit; }
+    .primary, .secondary { border: 0; border-radius: 999px; padding: 14px 24px; font-weight: 700; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+    .primary { color: white; background: var(--rose); box-shadow: 0 9px 20px rgba(217,87,112,.25); }
+    .primary:hover { background: var(--rose-dark); transform: translateY(-2px); }
+    .secondary { margin-left: 8px; color: var(--muted); background: transparent; }
+    .message { min-height: 24px; margin-top: 18px; color: var(--rose-dark); font-weight: 600; }
+
+    .details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .detail { padding: 23px; border-radius: 18px; background: #fff; border: 1px solid var(--line); }
+    .detail strong { display: block; margin-bottom: 7px; }
+    .detail span { color: var(--muted); font-size: .92rem; }
+    .quote { max-width: 670px; margin: 100px auto 0; text-align: center; font: italic 1.7rem/1.45 'Playfair Display', serif; }
+    footer { padding: 30px 20px 50px; text-align: center; color: var(--muted); font-size: .85rem; }
+
+    .overlay { position: fixed; inset: 0; display: none; place-items: center; padding: 20px; background: rgba(35,20,29,.72); z-index: 5; }
+    .overlay.show { display: grid; }
+    .modal { width: min(580px, 100%); max-height: 92vh; overflow: auto; padding: 34px; text-align: center; border-radius: 25px; background: white; box-shadow: var(--shadow); animation: pop .35s ease; }
+    @keyframes pop { from { opacity: 0; transform: scale(.92) translateY(12px); } to { opacity: 1; transform: none; } }
+    .modal h2 { color: var(--rose-dark); font-size: 2.5rem; }
+    .modal-place { margin: 20px 0 4px; font-size: 1.4rem; font-weight: 700; }
+    .modal-address, .status { color: var(--muted); font-size: .9rem; }
+    .photos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 22px 0; }
+    .photos img { width: 100%; height: 190px; object-fit: cover; border-radius: 14px; }
+    .modal-note { line-height: 1.7; color: var(--muted); }
+    .close { margin-top: 18px; background: var(--ink); color: white; }
+    .calendar-link {
+      display: inline-block; margin-top: 14px; color: var(--rose-dark); font-weight: 700; text-decoration: none;
+    }
+    .calendar-link:hover { text-decoration: underline; }
+
+    @media (max-width: 720px) {
+      .topbar, main { width: min(100% - 28px, 560px); }
+      .hero { grid-template-columns: 1fr; gap: 35px; min-height: auto; }
+      .hero-copy { font-size: 1rem; }
+      .portrait { width: min(82vw, 360px); }
+      .portrait-note { right: -8px; }
+      .section { margin-top: 70px; }
+      .choices, .details { grid-template-columns: 1fr; }
+      .quote { margin-top: 70px; font-size: 1.4rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+  </style>
 </head>
 <body>
-<div class="page">
-<header class="top"><div>LUNGANI <span aria-hidden="true">❤️</span> SAMKELO</div><button class="music" id="musicButton" type="button">♪ Play music</button></header>
-<section class="card">
-<div class="eyebrow">A little plan for us</div>
-<h1>Hey Samkelo,<br><span>shall we?</span></h1>
-<p class="intro">You just need to decide where we’re going. Pick the date that sounds most like you and I’ll handle the rest.</p>
-<div class="date">📅 Saturday, 26 September 2026</div>
-<p><strong>What are you in the mood for?</strong></p>
-<div class="choices">
-<button class="choice" type="button" data-place="Acrobranch Pretoria" data-address="18 Honingnestkrans St, Pretoria North, Pretoria, 0110" aria-pressed="false"><span class="icon">🌳</span><span class="check">♥</span><h3>Acrobranch Pretoria</h3><p>Adventure, laughs and a story we’ll tell later.</p></button>
-<button class="choice" type="button" data-place="The Social Grill" data-address="5 Boendoe Ave, Pretorius Park, Pretoria, 0081" aria-pressed="false"><span class="icon">🥩</span><span class="check">♥</span><h3>The Social Grill</h3><p>Good food and easy conversation.</p></button>
-<button class="choice" type="button" data-place="16th by KOI" data-address="16th Floor, The Capital Trilogy, 202 Amarand Ave, Waterkloof Glen, Pretoria, 0181" aria-pressed="false"><span class="icon">✨</span><span class="check">♥</span><h3>16th by KOI</h3><p>City lights and a reason to dress up.</p></button>
-<button class="choice" type="button" data-place="Hiking + KAUAI Menlyn Maine" data-address="Menlyn Maine, Amarand Ave, Waterkloof Glen, Pretoria, 0181" aria-pressed="false"><span class="icon">🥾</span><span class="check">♥</span><h3>Hiking + KAUAI</h3><p>Fresh air, a gentle walk and something delicious.</p></button>
-</div>
-<div class="actions"><button class="primary" id="yesButton" type="button">I’m in 😌</button><button class="secondary" id="noButton" type="button">Let me think 🙈</button><div class="message" id="message" role="status" aria-live="polite"></div></div>
-<div class="info"><div>📅 <b>When</b><small>Saturday, 26 September 2026</small></div><div>💌 <b>The plan</b><small>You choose. I’ll arrange the rest.</small></div><div>✨ <b>Dress code</b><small>Whatever makes you feel beautiful.</small></div></div>
-<p class="quote">“I don’t need a perfect place. I just want more time with you.”</p>
-</section><footer>Made with intention, courage and lots of love. ♡</footer></div>
+  <header class="topbar">
+    <div class="brand">Lungani <span aria-hidden="true">♥</span> Samkelo</div>
+    <button class="music-toggle" id="musicToggle" type="button" aria-pressed="false">♪ Play our song</button>
+  </header>
 
-<div class="overlay" id="overlay" role="dialog" aria-modal="true"><div class="modal"><div class="eyebrow">It’s a date</div><h2>Okay... it’s a date 😌❤️</h2><p>I knew you had good taste.</p><div class="place" id="finalPlace"></div><div class="address" id="finalAddress"></div><div class="photos"><img src="IMG-20260916-WA0016.jpg" alt="Samkelo"><img src="IMG-20260916-WA0014.jpg" alt="Samkelo"></div><p class="note">📅 Saturday, 26 September 2026<br><br>I’ll handle the rest. You just have to show up. 😉</p><a class="calendar" id="calendar" download="our-date.ics" href="#">＋ Add this date to your calendar</a><div class="status" id="emailStatus">Sending your choice... 👀</div><button class="primary close" id="closeButton" type="button">Okay okay 😂</button></div></div>
-<form id="emailForm" action="https://formsubmit.co/lunganizungu2018@gmail.com" method="POST" hidden><input type="hidden" name="_subject" value="Samkelo chose a date ❤️"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_autoresponse" value="Your choice has been received ❤️"><input type="hidden" name="Name" value="Samkelo Buthelezi"><input type="hidden" name="Date" value="26 September 2026"><input type="hidden" name="Choice" id="emailChoice"><input type="hidden" name="Address" id="emailAddress"></form>
-<audio id="music" loop><source src="music.mp3" type="audio/mpeg"></audio>
-<script>
-(function(){
-  'use strict';
-  var selectedPlace='',selectedAddress='',noClicks=0,yesClicks=0;
-  var choices=document.querySelectorAll('.choice'),message=document.getElementById('message'),overlay=document.getElementById('overlay'),music=document.getElementById('music');
-  function startMusic(){music.volume=0.3;music.play().catch(function(){});}
-  document.getElementById('musicButton').addEventListener('click',function(){if(music.paused){startMusic();this.textContent='Ⅱ Pause music';}else{music.pause();this.textContent='♪ Play music';}});
-  for(var i=0;i<choices.length;i++){choices[i].addEventListener('click',function(){startMusic();for(var j=0;j<choices.length;j++){choices[j].classList.remove('selected');choices[j].setAttribute('aria-pressed','false');}this.classList.add('selected');this.setAttribute('aria-pressed','true');selectedPlace=this.getAttribute('data-place');selectedAddress=this.getAttribute('data-address');message.textContent=selectedPlace+'? Interesting choice 👀';});}
-  document.getElementById('noButton').addEventListener('click',function(){startMusic();noClicks++;if(noClicks===1){message.textContent='Hmm... okay, take your time 🙈';this.textContent='Still thinking?';}else if(noClicks===2){message.textContent='No pressure — I’ll let you decide in peace 😌';this.textContent='Okay 😂';}else{message.textContent='The invitation will still be here when you’re ready ♡';}});
-  function calendarFile(){var ics='BEGIN:VCALENDAR\\r\\nVERSION:2.0\\r\\nBEGIN:VEVENT\\r\\nDTSTART:20260926T150000\\r\\nDTEND:20260926T210000\\r\\nSUMMARY:A date with Lungani ❤️\\r\\nLOCATION:'+selectedPlace+'\\r\\nDESCRIPTION:A special day planned for Samkelo and Lungani.\\r\\nEND:VEVENT\\r\\nEND:VCALENDAR';document.getElementById('calendar').href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));}
-  document.getElementById('yesButton').addEventListener('click',function(){startMusic();if(!selectedPlace){message.textContent='You need to choose a place first 😭';return;}yesClicks++;if(yesClicks<3){message.textContent=yesClicks===1?'You’re actually choosing that? 👀':'Okay... just making sure you’re serious 😂';this.textContent=yesClicks===1?'Yes, I’m serious 😌':'Definitely 😌❤️';return;}document.getElementById('finalPlace').textContent=selectedPlace;document.getElementById('finalAddress').textContent=selectedAddress;document.getElementById('emailChoice').value=selectedPlace;document.getElementById('emailAddress').value=selectedAddress;calendarFile();overlay.classList.add('show');document.getElementById('closeButton').focus();var form=document.getElementById('emailForm');fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}}).then(function(r){document.getElementById('emailStatus').textContent=r.ok?'Choice sent successfully 👀❤️':'Date confirmed — email may need another try 😂';}).catch(function(){document.getElementById('emailStatus').textContent='Date confirmed ❤️';});});
-  function close(){overlay.classList.remove('show');}document.getElementById('closeButton').addEventListener('click',close);overlay.addEventListener('click',function(e){if(e.target===overlay)close();});
-})();
-</script>
-</body></html>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="eyebrow">An invitation, just for you</div>
+        <h1 id="hero-title">Samkelo,<br><span>shall we?</span></h1>
+        <p class="hero-copy">I planned a little Saturday adventure for us. Pick the feeling that sounds most like you, and I’ll take care of the rest.</p>
+        <div class="date-pill">♡ Saturday, 26 September 2026</div>
+      </div>
+      <div class="portrait">
+        <img src="IMG-20260916-WA0016.jpg" alt="A special memory of Samkelo" loading="eager">
+        <div class="portrait-note">“The best plans are the ones we make together.”</div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="choice-title">
+      <div class="section-heading">
+        <div class="eyebrow">Your choice</div>
+        <h2 id="choice-title">What kind of date are you in the mood for?</h2>
+        <p>No wrong answers. Just four very good ways to spend time with you.</p>
+      </div>
+
+      <div class="choices">
+        <button class="choice" type="button" data-place="Acrobranch Pretoria" data-address="18 Honingnestkrans St, Pretoria North, Pretoria, 0110" aria-pressed="false">
+          <span class="choice-icon">🌳</span><span class="check" aria-hidden="true">♥</span>
+          <h3>Acrobranch Pretoria</h3>
+          <p>A little adventure, a lot of laughs, and a story we’ll tell later.</p>
+        </button>
+
+        <button class="choice" type="button" data-place="The Social Grill" data-address="5 Boendoe Ave, Pretorius Park, Pretoria, 0081" aria-pressed="false">
+          <span class="choice-icon">🥩</span><span class="check" aria-hidden="true">♥</span>
+          <h3>The Social Grill</h3>
+          <p>Good food, easy conversation, and no need to rush the evening.</p>
+        </button>
+
+        <button class="choice" type="button" data-place="16th by KOI" data-address="16th Floor, The Capital Trilogy, 202 Amarand Ave, Waterkloof Glen, Pretoria, 0181" aria-pressed="false">
+          <span class="choice-icon">✨</span><span class="check" aria-hidden="true">♥</span>
+          <h3>16th by KOI</h3>
+          <p>City lights, a beautiful view, and a reason to dress up a little.</p>
+        </button>
+
+        <button class="choice" type="button" data-place="Hiking + KAUAI Menlyn Maine" data-address="Menlyn Maine, Amarand Ave, Waterkloof Glen, Pretoria, 0181" aria-pressed="false">
+          <span class="choice-icon">🥾</span><span class="check" aria-hidden="true">♥</span>
+          <h3>Hiking + KAUAI</h3>
+          <p>Fresh air, a gentle walk, and something delicious afterwards.</p>
+        </button>
+      </div>
+
+      <div class="actions">
+        <button class="primary" id="yesBtn" type="button">This sounds perfect →</button>
+        <button class="secondary" id="noBtn" type="button">I need a little time</button>
+        <div class="message" id="message" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Date details">
+      <div class="details">
+        <div class="detail"><strong>📅 When</strong><span>Saturday, 26 September 2026</span></div>
+        <div class="detail"><strong>💌 The plan</strong><span>You choose the mood. I’ll handle the details.</span></div>
+        <div class="detail"><strong>✨ Dress code</strong><span>Whatever makes you feel beautiful.</span></div>
+      </div>
+    </section>
+
+    <p class="quote">“I don’t need a perfect place. I just want a little more time with you.”</p>
+  </main>
+
+  <footer>Made with intention, a little courage, and lots of love. ♡</footer>
+
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <div class="eyebrow">It’s a date</div>
+      <h2 id="modal-title">You chose beautifully.</h2>
+      <p>Now let me make the rest special.</p>
+      <div class="modal-place" id="finalPlace"></div>
+      <div class="modal-address" id="finalAddress"></div>
+      <div class="photos">
+        <img src="IMG-20260916-WA0014.jpg" alt="A shared memory" loading="lazy">
+        <img src="IMG-20260916-WA0016.jpg" alt="A shared memory" loading="lazy">
+      </div>
+      <p class="modal-note">Saturday, 26 September 2026<br><br>All you have to do is show up. I’ll be there. 😉</p>
+      <a class="calendar-link" id="calendarLink" href="#" download="our-date.ics">＋ Add this date to your calendar</a>
+      <div class="status" id="emailStatus">Saving your choice…</div>
+      <button class="primary close" id="closeBtn" type="button">I’m smiling already</button>
+    </div>
+  </div>
+
+  <form id="emailForm" action="https://formsubmit.co/lunganizungu2018@gmail.com" method="POST" hidden>
+    <input type="hidden" name="_subject" value="Samkelo chose a date ❤️">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_autoresponse" value="Your choice has been received ❤️">
+    <input type="hidden" name="Name" value="Samkelo Buthelezi">
+    <input type="hidden" name="Date" value="26 September 2026">
+    <input type="hidden" name="Choice" id="emailChoice">
+    <input type="hidden" name="Address" id="emailAddress">
+  </form>
+
+  <audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const choices = [...document.querySelectorAll('.choice')];
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const message = document.getElementById('message');
+    const overlay = document.getElementById('overlay');
+    const finalPlace = document.getElementById('finalPlace');
+    const finalAddress = document.getElementById('finalAddress');
+    const music = document.getElementById('music');
+    const musicToggle = document.getElementById('musicToggle');
+    const calendarLink = document.getElementById('calendarLink');
+
+    let selectedPlace = "";
+    let selectedAddress = "";
+    let noClicks = 0;
+    let yesClicks = 0;
+
+    function startMusic() {
+      music.volume = 0.35;
+      music.play().catch(() => {});
+    }
+
+    musicToggle.addEventListener('click', () => {
+      if (music.paused) {
+        startMusic();
+        musicToggle.textContent = 'Ⅱ Pause our song';
+        musicToggle.setAttribute('aria-pressed', 'true');
+      } else {
+        music.pause();
+        musicToggle.textContent = '♪ Play our song';
+        musicToggle.setAttribute('aria-pressed', 'false');
+      }
+    });
+
+    document.addEventListener('click', startMusic, { once: true });
+
+    choices.forEach(choice => {
+      choice.addEventListener('click', () => {
+        choices.forEach(item => {
+          item.classList.remove('selected');
+          item.setAttribute('aria-pressed', 'false');
+        });
+
+        choice.classList.add('selected');
+        choice.setAttribute('aria-pressed', 'true');
+
+        selectedPlace = choice.dataset.place;
+        selectedAddress = choice.dataset.address;
+        message.textContent = `${selectedPlace}? Interesting choice 👀`;
+      });
+    });
+
+    yesBtn.addEventListener('click', () => {
+      if (!selectedPlace) {
+        message.textContent = 'You need to choose a place first 😭';
+        return;
+      }
+
+      yesClicks++;
+
+      if (yesClicks === 1) {
+        message.textContent = 'You’re actually choosing that? 👀';
+        yesBtn.textContent = 'Yes, I’m serious 😌';
+        return;
+      }
+
+      if (yesClicks === 2) {
+        message.textContent = 'Okay... just making sure you’re serious 😂';
+        yesBtn.textContent = 'Definitely 😌❤️';
+        return;
+      }
+
+      finalPlace.textContent = selectedPlace;
+      finalAddress.textContent = selectedAddress;
+      document.getElementById('emailChoice').value = selectedPlace;
+      document.getElementById('emailAddress').value = selectedAddress;
+
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'BEGIN:VEVENT',
+        'DTSTART:20260926T150000',
+        'DTEND:20260926T210000',
+        'SUMMARY:A date with Lungani ❤️',
+        'LOCATION:' + selectedPlace,
+        'DESCRIPTION:A special day planned for Samkelo and Lungani.',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+      calendarLink.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+
+      overlay.classList.add('show');
+      document.getElementById('closeBtn').focus();
+
+      const form = document.getElementById('emailForm');
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      })
+      .then(response => {
+        const status = document.getElementById('emailStatus');
+        status.textContent = response.ok ? 'Choice sent successfully 👀❤️' : 'Date confirmed... but the email may need another try 😂';
+      })
+      .catch(() => {
+        document.getElementById('emailStatus').textContent = 'Date confirmed ❤️';
+      });
+    });
+
+    noBtn.addEventListener('click', () => {
+      startMusic();
+      noClicks++;
+
+      if (noClicks === 1) {
+        message.textContent = 'Hmm... okay, take your time 🙈';
+        noBtn.style.transform = 'translateX(35px)';
+        return;
+      }
+
+      if (noClicks === 2) {
+        message.textContent = 'You’re making this unnecessarily difficult 😂';
+        noBtn.style.transform = 'translateX(-35px)';
+        return;
+      }
+
+      if (noClicks === 3) {
+        message.textContent = 'Fine 😭 I’ll stop bothering you.';
+        noBtn.style.transform = 'translateX(0)';
+        noBtn.textContent = 'Okay 😂';
+        return;
+      }
+
+      message.textContent = 'I’ll let you decide in peace 😌';
+    });
+
+    document.getElementById('closeBtn').addEventListener('click', () => {
+      overlay.classList.remove('show');
+    });
+
+    overlay.addEventListener('click', (event) => {
+      if (event.target === overlay) {
+        overlay.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+</html>
