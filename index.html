@@ -1,861 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>💘 Lungani ❤️ Samkelo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root {
-      --bg1: #0b1020;
-      --bg2: #1a0933;
-      --card: rgba(255, 255, 255, 0.08);
-      --border: rgba(255, 255, 255, 0.14);
-      --text: rgba(255, 255, 255, 0.92);
-      --muted: rgba(255, 255, 255, 0.72);
-      --shadow: 0 20px 60px rgba(0,0,0,0.45);
-    }
+    <title>Lungani ❤️ Samkelo</title>
 
-    * { box-sizing: border-box; }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 800px at 20% 10%, #1b2a6d33, transparent 55%),
-        radial-gradient(900px 700px at 85% 30%, #ff4da622, transparent 60%),
-        linear-gradient(135deg, var(--bg1), var(--bg2));
-    }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff5f7, #ffe8ed);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-    .orb {
-      position: absolute;
-      width: 360px;
-      height: 360px;
-      border-radius: 50%;
-      filter: blur(30px);
-      opacity: 0.25;
-      animation: float 8s ease-in-out infinite;
-      pointer-events: none;
-    }
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 24px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
 
-    .orb.one {
-      background: #ff4da6;
-      top: -140px;
-      left: -120px;
-    }
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #e6395b;
+        }
 
-    .orb.two {
-      background: #2ef2c5;
-      bottom: -160px;
-      right: -140px;
-      animation-delay: 1.3s;
-    }
+        .intro {
+            margin-top: 25px;
+        }
 
-    .orb.three {
-      background: #8b5cff;
-      top: 55%;
-      left: 65%;
-      width: 280px;
-      height: 280px;
-      animation-delay: 2.2s;
-    }
+        .intro h2 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
 
-    @keyframes float {
-      0%,100% {
-        transform: translate(0,0) scale(1);
-      }
-      50% {
-        transform: translate(18px,-12px) scale(1.04);
-      }
-    }
+        .intro p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
 
-    .card {
-      width: min(680px, 92vw);
-      padding: 28px 22px 22px;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      background: var(--card);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-    }
+        .date {
+            display: inline-block;
+            margin: 15px 0;
+            padding: 10px 18px;
+            background: #fff0f3;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #d63357;
+        }
 
-    .sparkleLine {
-      position: absolute;
-      inset: -1px;
-      border-radius: 22px;
-      pointer-events: none;
-      background:
-        radial-gradient(
-          260px 80px at 20% 0%,
-          rgba(255,77,166,0.25),
-          transparent 60%
-        ),
-        radial-gradient(
-          260px 80px at 80% 100%,
-          rgba(46,242,197,0.18),
-          transparent 60%
-        );
-      mix-blend-mode: screen;
-    }
+        .choices {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-top: 25px;
+        }
 
-    .names {
-      font-size: 12px;
-      letter-spacing: 1.6px;
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-    }
+        .choice {
+            border: 2px solid #eee;
+            border-radius: 17px;
+            padding: 18px;
+            background: white;
+            cursor: pointer;
+            transition: 0.25s ease;
+            text-align: left;
+        }
 
-    .title {
-      font-size: clamp(24px, 3vw, 32px);
-      font-weight: 900;
-      margin: 0 0 6px;
-    }
+        .choice:hover {
+            transform: translateY(-2px);
+            border-color: #f29aaa;
+        }
 
-    .subtitle {
-      margin: 0 0 16px;
-      color: var(--muted);
-      font-size: 14px;
-    }
+        .choice.selected {
+            border-color: #e6395b;
+            background: #fff3f5;
+        }
 
-    .question {
-      margin: 14px 0 8px;
-      font-size: clamp(24px, 3.2vw, 40px);
-      font-weight: 950;
-      letter-spacing: 0.4px;
-    }
+        .choice-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
 
-    .status {
-      margin: 10px auto 18px;
-      color: var(--muted);
-      min-height: 30px;
-      font-size: 14px;
-      font-weight: 800;
-    }
+        .choice-address {
+            margin-top: 6px;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.4;
+        }
 
-    /* DATE OPTIONS */
+        .choice-check {
+            float: right;
+            font-size: 20px;
+            display: none;
+        }
 
-    .options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 18px 0;
-    }
+        .choice.selected .choice-check {
+            display: block;
+        }
 
-    .dateOption {
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-      padding: 14px;
-      border-radius: 15px;
-      cursor: pointer;
-      text-align: left;
-      transition: 0.2s ease;
-    }
+        .actions {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
 
-    .dateOption:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.10);
-    }
+        button {
+            border: none;
+            padding: 13px 22px;
+            border-radius: 25px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
 
-    .dateOption.selected {
-      border-color: rgba(255,77,166,0.7);
-      background: rgba(255,77,166,0.16);
-      transform: translateY(-2px);
-    }
+        #yesBtn {
+            background: #e6395b;
+            color: white;
+        }
 
-    .dateOption strong {
-      display: block;
-      font-size: 15px;
-      margin-bottom: 5px;
-    }
+        #yesBtn:hover {
+            transform: scale(1.04);
+        }
 
-    .dateOption span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.4;
-    }
+        #noBtn {
+            background: #eee;
+            color: #555;
+            position: relative;
+        }
 
-    .buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      position: relative;
-      margin-top: 10px;
-    }
+        .message {
+            min-height: 25px;
+            margin-top: 18px;
+            color: #d63357;
+            font-size: 14px;
+            font-weight: bold;
+        }
 
-    button {
-      appearance: none;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.08);
-      color: var(--text);
-      padding: 12px 18px;
-      border-radius: 14px;
-      font-size: 15px;
-      font-weight: 900;
-      cursor: pointer;
-      transition:
-        transform 0.15s ease,
-        border-color 0.15s ease,
-        opacity 0.15s ease;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.22);
-      min-width: 150px;
-    }
+        /* Final popup */
 
-    button:hover {
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,0.28);
-    }
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 100;
+        }
 
-    button:active {
-      transform: translateY(1px) scale(0.98);
-    }
+        .overlay.show {
+            display: flex;
+        }
 
-    .yes {
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255,77,166,0.32),
-          rgba(255,46,99,0.20)
-        );
-      border-color: rgba(255,77,166,0.35);
-    }
+        .final-card {
+            width: 100%;
+            max-width: 560px;
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            animation: pop 0.35s ease;
+        }
 
-    .no {
-      background:
-        linear-gradient(
-          135deg,
-          rgba(46,242,197,0.18),
-          rgba(255,255,255,0.06)
-        );
-      border-color: rgba(46,242,197,0.32);
-    }
+        @keyframes pop {
+            from {
+                transform: scale(0.85);
+                opacity: 0;
+            }
 
-    .hint {
-      margin-top: 14px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.55);
-    }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
 
-    /* SHAKE */
+        .final-card h2 {
+            color: #e6395b;
+            margin-top: 0;
+        }
 
-    .shake {
-      animation: shake 0.35s ease-in-out;
-    }
+        .final-place {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 15px 0 5px;
+        }
 
-    @keyframes shake {
-      0%,100% { transform: translateX(0); }
-      20% { transform: translateX(-8px); }
-      40% { transform: translateX(8px); }
-      60% { transform: translateX(-6px); }
-      80% { transform: translateX(6px); }
-    }
+        .final-address {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
 
-    /* GROW */
+        .photos {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
 
-    .grow-text {
-      animation: growBounce 0.45s ease-out;
-    }
+        .photos img {
+            width: 45%;
+            max-height: 230px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
 
-    @keyframes growBounce {
-      0%   { transform: scale(1); }
-      60%  { transform: scale(1.25); }
-      100% { transform: scale(1.15); }
-    }
+        .final-note {
+            color: #555;
+            line-height: 1.6;
+        }
 
-    /* RUNAWAY */
+        .close-btn {
+            margin-top: 15px;
+            background: #e6395b;
+            color: white;
+        }
 
-    .runaway {
-      position: relative;
-      transition: transform 0.3s ease;
-      will-change: transform;
-    }
+        .email-status {
+            margin-top: 12px;
+            font-size: 12px;
+            color: #777;
+        }
 
-    /* OVERLAY */
+        @media (max-width: 500px) {
+            .container {
+                padding: 28px 18px;
+            }
 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(
-          650px 420px at 50% 40%,
-          rgba(255,77,166,0.25),
-          transparent 65%
-        ),
-        rgba(0,0,0,0.35);
-      border-radius: 22px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
-      padding: 16px;
-    }
+            h1 {
+                font-size: 24px;
+            }
 
-    .overlay.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
+            .intro h2 {
+                font-size: 21px;
+            }
 
-    .finalBox {
-      width: min(560px, 92%);
-      text-align: center;
-      padding: 18px 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(10,10,20,0.62);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-    }
-
-    .finalBox h2 {
-      margin: 0 0 8px;
-      font-size: 22px;
-    }
-
-    .finalBox p {
-      margin: 0 0 12px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .tiny {
-      margin-top: 10px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.6);
-    }
-
-    /* HEARTS + CONFETTI */
-
-    .hearts,
-    .confetti {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .heart {
-      position: absolute;
-      font-size: 18px;
-      opacity: 0.9;
-      animation: rise linear forwards;
-      filter: drop-shadow(0 10px 10px rgba(0,0,0,0.25));
-    }
-
-    @keyframes rise {
-      0% {
-        transform: translateY(0) scale(0.9);
-        opacity: 0;
-      }
-
-      10% {
-        opacity: 0.95;
-      }
-
-      100% {
-        transform: translateY(-110vh) scale(1.35);
-        opacity: 0;
-      }
-    }
-
-    .conf {
-      position: absolute;
-      width: 10px;
-      height: 14px;
-      border-radius: 3px;
-      opacity: 0.95;
-      animation: fall linear forwards;
-      transform: translateY(-20px) rotate(0deg);
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(115vh) rotate(720deg);
-        opacity: 0.9;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .options {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+            .photos img {
+                max-height: 180px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="orb one"></div>
-  <div class="orb two"></div>
-  <div class="orb three"></div>
+<div class="container">
 
-  <div class="hearts" id="hearts"></div>
-  <div class="confetti" id="confetti"></div>
+    <h1>LUNGANI ❤️ SAMKELO</h1>
 
-  <main class="card" id="card">
-
-    <div class="sparkleLine"></div>
-
-    <div class="names">LUNGANI ❤️ SAMKELO</div>
-
-    <h1 class="title">Hey Samkelo 💌</h1>
-
-    <p class="subtitle">
-      I have a very important question for you... 👀
-    </p>
-
-    <div class="question">
-      Dinner date? 😌
-    </div>
-
-    <div class="status" id="status">
-      But you get to choose the vibe 👀
-    </div>
-
-    <div class="options">
-
-      <button class="dateOption" data-choice="Acrobranch Pretoria">
-        <strong>🌳 Acrobranch Pretoria</strong>
-        <span>
-          A little adventure... let's see who gets scared first 😂
-        </span>
-      </button>
-
-      <button class="dateOption" data-choice="The Social Grill">
-        <strong>🍽️ The Social Grill</strong>
-        <span>
-          Good food, good conversation. Simple and classy 😌
-        </span>
-      </button>
-
-      <button class="dateOption" data-choice="16 by KOI">
-        <strong>🥂 16 by KOI</strong>
-        <span>
-          Okayyy, so we're going fancy? 👀
-        </span>
-      </button>
-
-      <button class="dateOption" data-choice="Hiking + KAUAI">
-        <strong>🥾 Hiking + KAUAI</strong>
-        <span>
-          Nothing hectic... just a hike and a smoothie 😌
-        </span>
-      </button>
-
-    </div>
-
-    <div class="buttons" id="btnWrap">
-
-      <button class="yes" id="yesBtn">
-        I'm in 💖
-      </button>
-
-      <button class="no runaway" id="noBtn">
-        Let me think 🙈
-      </button>
-
-    </div>
-
-    <div class="hint">
-      Choose wisely... I'm judging your date choice 😭😂
-    </div>
-
-    <div class="overlay" id="overlay">
-
-      <div class="finalBox">
-
-        <h2 id="finalTitle">
-          Ayyyy, Samkelo! 😭❤️
-        </h2>
-
-        <p id="finalText">
-          So you actually said yes? 👀
-        </p>
+    <div class="intro">
+        <h2>Hey Samkelo 👀</h2>
 
         <p>
-          <strong id="chosenDate"></strong>
+            So... I have a little plan for us.
+            <br>
+            You just need to decide where we're going. 😌
         </p>
 
-        <p>
-          Okay, I'll make the arrangements. 😌
-        </p>
-
-        <button id="closeBtn">
-          Can't wait 💕
-        </button>
-
-        <div class="tiny">
-          Made with love by Lungani ❤️
+        <div class="date">
+            📅 Saturday, 26 September 2026
         </div>
 
-      </div>
+        <p>
+            Where am I taking you?
+        </p>
+    </div>
+
+    <div class="choices">
+
+        <div class="choice" data-place="Acrobranch Pretoria" data-address="18 Honingnestkrans St, Pretoria North, Pretoria, 0110">
+            <span class="choice-check">❤️</span>
+
+            <div class="choice-title">
+                🌳 Acrobranch Pretoria
+            </div>
+
+            <div class="choice-address">
+                18 Honingnestkrans St, Pretoria North
+            </div>
+        </div>
+
+        <div class="choice" data-place="The Social Grill" data-address="5 Boendoe Ave, Pretorius Park, Pretoria, 0081">
+            <span class="choice-check">❤️</span>
+
+            <div class="choice-title">
+                🥩 The Social Grill
+            </div>
+
+            <div class="choice-address">
+                5 Boendoe Ave, Pretorius Park
+            </div>
+        </div>
+
+        <div class="choice" data-place="16th by KOI" data-address="16th Floor, The Capital Trilogy, 202 Amarand Ave, Waterkloof Glen, Pretoria, 0181">
+            <span class="choice-check">❤️</span>
+
+            <div class="choice-title">
+                ✨ 16th by KOI
+            </div>
+
+            <div class="choice-address">
+                16th Floor, The Capital Trilogy, 202 Amarand Ave
+            </div>
+        </div>
+
+        <div class="choice" data-place="Hiking + KAUAI Menlyn Maine" data-address="Menlyn Maine, Amarand Ave, Waterkloof Glen, Pretoria, 0181">
+            <span class="choice-check">❤️</span>
+
+            <div class="choice-title">
+                🥾 Hiking + KAUAI
+            </div>
+
+            <div class="choice-address">
+                Menlyn Maine, Waterkloof Glen
+            </div>
+        </div>
 
     </div>
 
-  </main>
+    <div class="actions">
+        <button id="yesBtn">
+            I'm in 😌
+        </button>
 
-  <script>
+        <button id="noBtn">
+            Let me think 🙈
+        </button>
+    </div>
 
-    const statusEl = document.getElementById("status");
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const card = document.getElementById("card");
-    const overlay = document.getElementById("overlay");
-    const btnWrap = document.getElementById("btnWrap");
-    const chosenDate = document.getElementById("chosenDate");
-    const closeBtn = document.getElementById("closeBtn");
+    <div class="message" id="message"></div>
 
-    const heartsWrap = document.getElementById("hearts");
-    const confettiWrap = document.getElementById("confetti");
+</div>
 
-    const dateOptions = document.querySelectorAll(".dateOption");
 
-    let selectedDate = "";
+<!-- FINAL CONFIRMATION -->
+
+<div class="overlay" id="overlay">
+
+    <div class="final-card">
+
+        <h2>
+            Okay... it's a date 😌❤️
+        </h2>
+
+        <p>
+            I knew you had good taste.
+        </p>
+
+        <div class="final-place" id="finalPlace"></div>
+
+        <div class="final-address" id="finalAddress"></div>
+
+        <div class="photos">
+            <img src="her1.jpg" alt="Samkelo">
+            <img src="her2.jpg" alt="Samkelo">
+        </div>
+
+        <p class="final-note">
+            📅 Saturday, 26 September 2026
+            <br><br>
+            I'll handle the rest.
+            You just have to show up. 😉
+        </p>
+
+        <div class="email-status" id="emailStatus">
+            Sending your choice... 👀
+        </div>
+
+        <button class="close-btn" onclick="closeOverlay()">
+            Okay okay 😂
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- Hidden email form -->
+<form
+    id="emailForm"
+    action="https://formsubmit.co/lunganizungu2018@gmail.com"
+    method="POST"
+    style="display:none;"
+>
+
+    <input type="hidden" name="_subject" value="Samkelo chose a date ❤️">
+
+    <input type="hidden" name="_template" value="table">
+
+    <input type="hidden" name="_captcha" value="false">
+
+    <input type="hidden" name="_autoresponse"
+           value="Your choice has been received ❤️">
+
+    <input type="hidden" name="Name" value="Samkelo Buthelezi">
+
+    <input type="hidden" name="Date" value="26 September 2026">
+
+    <input type="hidden" name="Choice" id="emailChoice">
+
+    <input type="hidden" name="Address" id="emailAddress">
+
+    <input type="hidden" name="Message"
+           value="Samkelo has chosen the date option above. Looks like Lungani has a date. 😌❤️">
+
+</form>
+
+
+<!-- MUSIC -->
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+
+<script>
+
+    let selectedPlace = "";
+    let selectedAddress = "";
+
     let noClicks = 0;
     let yesClicks = 0;
 
+    const choices = document.querySelectorAll(".choice");
 
-    /* -------------------------
-       DATE SELECTION
-    ------------------------- */
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
 
-    dateOptions.forEach(option => {
+    const message = document.getElementById("message");
 
-      option.addEventListener("click", () => {
+    const overlay = document.getElementById("overlay");
 
-        dateOptions.forEach(item => {
-          item.classList.remove("selected");
+    const finalPlace = document.getElementById("finalPlace");
+    const finalAddress = document.getElementById("finalAddress");
+
+    const music = document.getElementById("music");
+
+    /*
+        Start music after the first interaction.
+
+        Browsers normally block autoplay until
+        the visitor interacts with the page.
+    */
+
+    function startMusic() {
+
+        music.volume = 0.35;
+
+        music.play().catch(() => {
+            console.log("Music waiting for user interaction.");
         });
+    }
 
-        option.classList.add("selected");
 
-        selectedDate = option.dataset.choice;
+    document.addEventListener("click", startMusic, {
+        once: true
+    });
 
-        setStatus(
-          `${selectedDate}? 👀 I see what kind of girl you are 😂`
-        );
 
-        statusEl.classList.remove("grow-text");
-        void statusEl.offsetWidth;
-        statusEl.classList.add("grow-text");
+    /*
+        SELECT A PLACE
+    */
 
-      });
+    choices.forEach(choice => {
+
+        choice.addEventListener("click", () => {
+
+            choices.forEach(item => {
+                item.classList.remove("selected");
+            });
+
+            choice.classList.add("selected");
+
+            selectedPlace = choice.dataset.place;
+            selectedAddress = choice.dataset.address;
+
+            message.textContent =
+                `${selectedPlace}? Interesting choice 👀`;
+
+        });
 
     });
 
 
-    /* -------------------------
-       STATUS
-    ------------------------- */
-
-    function setStatus(msg) {
-      statusEl.textContent = msg;
-    }
-
-
-    /* -------------------------
-       SHAKE
-    ------------------------- */
-
-    function shakeCard() {
-
-      card.classList.remove("shake");
-
-      void card.offsetWidth;
-
-      card.classList.add("shake");
-
-    }
-
-
-    /* -------------------------
-       HEARTS
-    ------------------------- */
-
-    function spawnHearts(durationMs = 3200) {
-
-      const emojis = [
-        "💖",
-        "💗",
-        "💘",
-        "💝",
-        "💕",
-        "💞"
-      ];
-
-      const endAt = Date.now() + durationMs;
-
-      const interval = setInterval(() => {
-
-        const h = document.createElement("div");
-
-        h.className = "heart";
-
-        h.textContent =
-          emojis[Math.floor(Math.random() * emojis.length)];
-
-        h.style.left =
-          Math.random() * 100 + "vw";
-
-        h.style.bottom =
-          (-10 - Math.random() * 10) + "px";
-
-        h.style.fontSize =
-          (14 + Math.random() * 24) + "px";
-
-        h.style.animationDuration =
-          (1800 + Math.random() * 1700) + "ms";
-
-        heartsWrap.appendChild(h);
-
-        h.addEventListener(
-          "animationend",
-          () => h.remove()
-        );
-
-        if (Date.now() > endAt) {
-          clearInterval(interval);
-        }
-
-      }, 70);
-    }
-
-
-    /* -------------------------
-       CONFETTI
-    ------------------------- */
-
-    function spawnConfetti(pieces = 160) {
-
-      const colors = [
-        "rgba(255,77,166,0.95)",
-        "rgba(46,242,197,0.9)",
-        "rgba(255,255,255,0.9)",
-        "rgba(139,92,255,0.9)",
-        "rgba(255,46,99,0.9)"
-      ];
-
-      for (let i = 0; i < pieces; i++) {
-
-        const c = document.createElement("div");
-
-        c.className = "conf";
-
-        c.style.left =
-          Math.random() * 100 + "vw";
-
-        c.style.top =
-          (-30 - Math.random() * 60) + "px";
-
-        c.style.background =
-          colors[Math.floor(Math.random() * colors.length)];
-
-        c.style.width =
-          (6 + Math.random() * 10) + "px";
-
-        c.style.height =
-          (10 + Math.random() * 14) + "px";
-
-        c.style.animationDuration =
-          (1500 + Math.random() * 1600) + "ms";
-
-        c.style.animationDelay =
-          (Math.random() * 250) + "ms";
-
-        confettiWrap.appendChild(c);
-
-        c.addEventListener(
-          "animationend",
-          () => c.remove()
-        );
-
-      }
-    }
-
-
-    /* -------------------------
-       MOVE NO BUTTON
-    ------------------------- */
-
-    function moveNoButtonRandomly() {
-
-      const wrapRect =
-        btnWrap.getBoundingClientRect();
-
-      const btnRect =
-        noBtn.getBoundingClientRect();
-
-      const maxX =
-        Math.max(
-          10,
-          (wrapRect.width - btnRect.width) / 2
-        );
-
-      const maxY = 36;
-
-      const x =
-        (Math.random() * 2 - 1) * maxX;
-
-      const y =
-        (Math.random() * 2 - 1) * maxY;
-
-      noBtn.style.transform =
-        `translate(${x}px, ${y}px)`;
-
-    }
-
-
-    /* -------------------------
-       YES
-    ------------------------- */
+    /*
+        YES BUTTON
+    */
 
     yesBtn.addEventListener("click", () => {
 
-      yesClicks++;
+        if (!selectedPlace) {
 
-      if (!selectedDate) {
+            message.textContent =
+                "You need to choose a place first 😭";
 
-        setStatus(
-          "Hold on 😭 You haven't even chosen the date!"
-        );
+            return;
+        }
 
-        shakeCard();
+        yesClicks++;
 
-        return;
-      }
+        if (yesClicks === 1) {
 
-      if (yesClicks === 1) {
+            message.textContent =
+                "You're actually choosing that? 👀";
 
-        setStatus(
-          `${selectedDate} it is? 👀 Are you sure? 😂`
-        );
+            yesBtn.textContent =
+                "Yes, I'm serious 😌";
 
-        statusEl.classList.remove("grow-text");
+            return;
+        }
 
-        void statusEl.offsetWidth;
+        if (yesClicks === 2) {
 
-        statusEl.classList.add("grow-text");
+            message.textContent =
+                "Okay... just making sure you're serious 😂";
 
-        spawnHearts(1000);
+            yesBtn.textContent =
+                "Definitely 😌❤️";
 
-        return;
-      }
+            return;
+        }
 
-      if (yesClicks === 2) {
+        /*
+            FINAL CONFIRMATION
+        */
 
-        setStatus(
-          "Okay okay 😭 I just wanted to make sure..."
-        );
+        finalPlace.textContent =
+            selectedPlace;
 
-        spawnHearts(1200);
+        finalAddress.textContent =
+            selectedAddress;
 
-        return;
-      }
+        document.getElementById("emailChoice").value =
+            selectedPlace;
 
-      /* FINAL YES */
+        document.getElementById("emailAddress").value =
+            selectedAddress;
 
-      chosenDate.textContent =
-        `📍 ${selectedDate}`;
+        overlay.classList.add("show");
 
-      setStatus(
-        "Ayyyyy 😭❤️ It's actually happening!"
-      );
-
-      overlay.classList.add("show");
-
-      spawnConfetti(190);
-
-      spawnHearts(3800);
-
-      yesBtn.disabled = true;
-      noBtn.disabled = true;
+        sendEmail();
 
     });
 
 
-    /* -------------------------
-       NO / LET ME THINK
-    ------------------------- */
+    /*
+        PLAYFUL NO BUTTON
+    */
 
     noBtn.addEventListener("click", () => {
 
-      noClicks++;
+        noClicks++;
 
-      if (noClicks === 1) {
+        if (noClicks === 1) {
 
-        moveNoButtonRandomly();
+            message.textContent =
+                "Hmm... okay, take your time 🙈";
 
-        shakeCard();
+            noBtn.style.transform =
+                "translateX(35px)";
 
-        setStatus(
-          "Let you think? 😭 You already came this far..."
-        );
+            return;
+        }
 
-        return;
-      }
+        if (noClicks === 2) {
 
-      if (noClicks === 2) {
+            message.textContent =
+                "You're making this unnecessarily difficult 😂";
 
-        moveNoButtonRandomly();
+            noBtn.style.transform =
+                "translateX(-35px)";
 
-        setStatus(
-          "Samkelo please 😂 don't embarrass us both."
-        );
+            return;
+        }
 
-        return;
-      }
+        if (noClicks === 3) {
 
-      if (noClicks === 3) {
+            message.textContent =
+                "Fine 😭 I'll stop bothering you.";
 
-        setStatus(
-          "Okay fine 😭 I'll give you one last chance."
-        );
+            noBtn.style.transform =
+                "translateX(0)";
 
-        moveNoButtonRandomly();
+            noBtn.textContent =
+                "Okay 😂";
 
-        return;
-      }
+            return;
+        }
 
-      setStatus(
-        "You know you're supposed to say yes, right? 😂❤️"
-      );
-
-    });
-
-
-    /* -------------------------
-       CLOSE OVERLAY
-    ------------------------- */
-
-    closeBtn.addEventListener("click", () => {
-
-      overlay.classList.remove("show");
+        message.textContent =
+            "I'll let you decide in peace 😌";
 
     });
 
 
-    overlay.addEventListener("click", (event) => {
+    /*
+        SEND EMAIL
+    */
 
-      if (event.target === overlay) {
+    function sendEmail() {
+
+        const form =
+            document.getElementById("emailForm");
+
+        const status =
+            document.getElementById("emailStatus");
+
+        /*
+            Submit the hidden form.
+
+            FormSubmit handles the email delivery.
+        */
+
+        fetch(form.action, {
+
+            method: "POST",
+
+            body: new FormData(form),
+
+            headers: {
+                "Accept": "application/json"
+            }
+
+        })
+        .then(response => {
+
+            if (response.ok) {
+
+                status.textContent =
+                    "Choice sent successfully 👀❤️";
+
+            } else {
+
+                status.textContent =
+                    "The date is confirmed... but the email may need another try 😂";
+
+            }
+
+        })
+        .catch(error => {
+
+            console.error(error);
+
+            status.textContent =
+                "Date confirmed ❤️";
+
+        });
+
+    }
+
+
+    /*
+        CLOSE FINAL POPUP
+    */
+
+    function closeOverlay() {
+
         overlay.classList.remove("show");
-      }
 
-    });
+    }
 
-  </script>
+</script>
 
 </body>
 </html>
